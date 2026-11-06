@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>莒光國小性平宣導資源</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&display=swap">
+<style>
+/* Layout: 一般網站 — 上方導覽列（手機收合）＋一次只顯示一個頁面；頁內內容以收合面板呈現 */
+:root{
+  --paper:#FFFCF6; --ink:#3E3A39; --ink-soft:#6E6866;
+  --coral:#F2A497; --yamabuki:#F6D27A; --mizu:#A8D3E6; --wakatake:#B9DAA5;
+  --coral-tint:#FBE3DE; --yamabuki-tint:#FCF1D3; --mizu-tint:#E3F1F7; --wakatake-tint:#E8F2E1;
+  --line:3px solid var(--ink);
+  --r-lg:26px; --r-md:18px;
+  --font:"Huninn","jf-openhuninn","PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.75;padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:1040px;margin:0 auto}
+a{color:var(--ink)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px dashed var(--ink);outline-offset:3px}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance;line-height:1.35}
+p{margin:0}
+svg{display:block}
+
+/* ---------- 導覽列 ---------- */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:var(--line)}
+.topbar .inner{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:66px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.brand svg{width:38px;height:38px;flex:none}
+.brand span{display:grid;line-height:1.25;min-width:0}
+.brand b{font-weight:400;font-size:17px;white-space:nowrap}
+.brand small{font-size:12px;color:var(--ink-soft);white-space:nowrap}
+.menu{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.menu a{display:block;text-decoration:none;padding:4px 14px;border-radius:999px;border:3px solid transparent;font-size:15.5px;white-space:nowrap}
+.menu a:hover{border-color:var(--ink)}
+.menu a[aria-current="page"]{background:var(--yamabuki);border-color:var(--ink)}
+.menubtn{display:none;align-items:center;gap:8px;border:var(--line);border-radius:999px;background:var(--paper);padding:4px 14px;cursor:pointer}
+.menubtn svg{width:20px;height:20px}
+@media (max-width:1000px){
+  .menubtn{display:inline-flex}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:4px;background:var(--paper);border-bottom:var(--line);
+    padding:10px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))}
+  .topbar.open .menu{display:flex}
+  .menu a{padding:8px 16px}
+}
+
+/* ---------- 頁面 ---------- */
+main{padding-top:32px}
+.view{display:grid;gap:24px}
+.pagehead{display:grid;gap:6px}
+.pagehead h1{font-size:clamp(26px,3.6vw,34px)}
+.pagehead p{color:var(--ink-soft);max-width:44em}
+.card{background:var(--paper);border:var(--line);border-radius:var(--r-lg)}
+
+/* 首頁 */
+.cover{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.cover .text{padding:34px 34px;display:grid;gap:14px;align-content:center}
+.cover h1{font-size:clamp(28px,4.2vw,40px)}
+.cover p{color:var(--ink-soft)}
+.cover .art{background:var(--mizu-tint);border-left:var(--line);min-width:0}
+.cover .art svg{width:100%;height:100%;min-height:240px}
+@media (max-width:760px){.cover{grid-template-columns:1fr}.cover .art{border-left:0;border-top:var(--line);order:-1}.cover .art svg{min-height:180px}.cover .text{padding:24px 22px}}
+.entries{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.entries{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.entries{grid-template-columns:1fr}}
+.entry{border:var(--line);border-radius:var(--r-md);padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;text-decoration:none;background:var(--paper)}
+.entry .ic{grid-row:span 2;width:52px;height:52px;border:var(--line);border-radius:50%;background:var(--ec);display:grid;place-items:center}
+.entry .ic svg{width:32px;height:32px}
+.entry b{font-weight:400;font-size:17px}
+.entry span{font-size:13px;color:var(--ink-soft)}
+.entry:hover{background:var(--et)}
+
+/* 求助 */
+.help{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;padding:20px 26px;background:var(--coral-tint);align-items:center}
+.help svg.phone{width:88px;height:88px}
+.help .body{display:grid;gap:10px}
+.help h2{font-size:20px}
+.lines{display:flex;flex-wrap:wrap;gap:10px 28px}
+.line{display:grid;line-height:1.4}
+.line .num{font-size:24px;letter-spacing:.03em;font-variant-numeric:tabular-nums;user-select:all}
+.line small{font-size:13px;color:var(--ink-soft)}
+.help .note{font-size:13.5px}
+@media (max-width:600px){.help{grid-template-columns:1fr;padding:20px}.help svg.phone{width:64px;height:64px}}
+
+/* 收合面板 */
+details.fold{border:var(--line);border-radius:var(--r-md);background:var(--paper);overflow:hidden}
+details.fold>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 18px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary .ic{width:44px;height:44px;border:var(--line);border-radius:50%;background:var(--fc,var(--yamabuki));display:grid;place-items:center}
+details.fold>summary .ic svg{width:28px;height:28px}
+details.fold>summary .tt{display:grid;line-height:1.45;min-width:0}
+details.fold>summary .tt b{font-weight:400;font-size:17px}
+details.fold>summary .tt small{font-size:13px;color:var(--ink-soft)}
+details.fold>summary .chev{width:30px;height:30px;border:var(--line);border-radius:50%;display:grid;place-items:center;font-size:14px;transition:transform .15s}
+details.fold[open]>summary{background:var(--ft,var(--yamabuki-tint));border-bottom:var(--line)}
+details.fold[open]>summary .chev{transform:rotate(180deg)}
+details.fold>summary:hover{background:var(--ft,var(--yamabuki-tint))}
+.foldbody{padding:14px 18px 18px;display:grid;gap:12px}
+.folds{display:grid;gap:12px}
+.dot{display:inline-block;width:14px;height:14px;border:2px solid var(--ink);border-radius:50%;background:var(--fc)}
+
+/* 課程架構 */
+.grades{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.grades{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.gtab{border:var(--line);border-radius:var(--r-md);background:var(--paper);padding:8px 4px 6px;display:grid;justify-items:center;cursor:pointer}
+.gtab svg{width:44px;height:64px}
+.gtab:hover{background:var(--wakatake-tint)}
+.gtab[aria-selected="true"]{background:var(--wakatake)}
+.gpanel{padding:22px 24px;display:grid;gap:16px}
+.gpanel .axis{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.gpanel .axis .lbl{font-size:14px;color:var(--ink-soft)}
+.gpanel .axis h2{font-size:clamp(21px,2.8vw,26px)}
+.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:620px){.terms{grid-template-columns:1fr}}
+.term{border:var(--line);border-radius:var(--r-md);padding:16px 18px;display:grid;gap:8px;align-content:start;min-width:0}
+.term.up{background:var(--yamabuki-tint)}
+.term.down{background:var(--mizu-tint)}
+.term .sem{justify-self:start;font-size:13px;border:2px solid var(--ink);border-radius:999px;padding:0 12px;background:var(--paper)}
+.term h3{font-size:18.5px}
+.term p{font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;border:2px solid var(--ink);border-radius:999px;padding:0 10px;background:var(--paper);white-space:nowrap}
+.chip.pin{background:var(--yamabuki)}
+.ext{font-size:14px;color:var(--ink-soft)}
+.ext a{color:var(--ink)}
+.gnote{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-soft)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:var(--line);border-radius:999px;padding:5px 18px;background:var(--coral);text-decoration:none;font-size:15px;cursor:pointer}
+.btn:hover{background:var(--coral-tint)}
+
+/* 議題內涵 */
+.elist{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px;line-height:1.65}
+.elist li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline}
+.elist b{font-weight:400;font-size:13px;border:2px solid var(--ink);border-radius:8px;padding:0 6px;background:var(--paper);white-space:nowrap}
+
+/* 宣導資源 */
+.search{display:flex}
+.search input{flex:1;min-width:0;padding:8px 18px;border:var(--line);border-radius:999px;background:var(--paper)}
+.res{display:grid;gap:4px;padding-block:10px;border-bottom:2px dashed var(--ink-soft)}
+.res:last-child{border-bottom:0;padding-bottom:0}
+.res:first-child{padding-top:0}
+.res h3{font-size:16.5px;line-height:1.5;overflow-wrap:anywhere}
+.res h3 a{text-decoration:none}
+.res h3 a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.res p{font-size:14.5px;color:var(--ink-soft)}
+.res .src{font-size:13px;color:var(--ink-soft)}
+.empty{border:3px dashed var(--ink);border-radius:var(--r-md);padding:24px;text-align:center;color:var(--ink-soft)}
+.count{font-size:14px;color:var(--ink-soft)}
+
+.aboutcard{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:20px;padding:26px 28px;align-items:center}
+.abouttext{display:grid;gap:8px;min-width:0}
+.abouttext h2{font-size:19px;margin-top:6px}
+.abouttext h2:first-child{margin-top:0}
+blockquote{margin:0;padding:12px 18px;border:var(--line);border-radius:var(--r-md);background:var(--yamabuki-tint);font-size:16.5px;line-height:1.7}
+.cite{font-size:13px;color:var(--ink-soft);text-align:right}
+.aboutart svg{width:100%;height:auto}
+@media (max-width:700px){.aboutcard{grid-template-columns:1fr;padding:22px 20px}.aboutart{order:-1;max-width:220px;justify-self:center}}
+.subh{font-size:22px}
+.timeline{list-style:none;margin:0;padding:0 0 0 6px;display:grid;gap:0;position:relative}
+.timeline li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:0 0 18px 26px;position:relative}
+.timeline li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border:3px solid var(--ink);border-radius:50%;background:var(--wakatake);box-sizing:border-box}
+.timeline li::after{content:"";position:absolute;left:6.5px;top:24px;bottom:2px;width:3px;background:var(--ink)}
+.timeline li:last-child::after{display:none}
+.timeline li:nth-child(4n+2)::before{background:var(--mizu)}
+.timeline li:nth-child(4n+3)::before{background:var(--yamabuki)}
+.timeline li:nth-child(4n)::before{background:var(--coral)}
+.timeline b{font-weight:400;font-size:17px;font-variant-numeric:tabular-nums}
+.timeline span{font-size:15.5px}
+@media (max-width:520px){.timeline li{grid-template-columns:1fr;gap:0}}
+ul.plain{margin:0;padding-left:20px;display:grid;gap:8px;font-size:15px}
+.cover .more{justify-self:start}
+.srcnote{font-size:13.5px;color:var(--ink-soft);border:2px dashed var(--ink-soft);border-radius:var(--r-md);padding:10px 16px}
+.mgroup{display:grid;gap:6px}
+.mgroup+.mgroup{padding-top:12px;border-top:2px dashed var(--ink-soft)}
+.mgroup h3{font-size:15.5px}
+.mlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px}
+@media (max-width:680px){.mlist{grid-template-columns:1fr}}
+.mlist li{display:flex;align-items:baseline;gap:8px;min-width:0;font-size:15px;line-height:1.55}
+.mlist li .chip{flex:none;font-size:11.5px}
+.mlist a{text-decoration:none;overflow-wrap:anywhere}
+.mlist a:hover{text-decoration:underline;text-decoration-thickness:2px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:st}
+ol.steps li{counter-increment:st;display:grid;grid-template-columns:34px minmax(0,1fr);gap:2px 12px;font-size:15px}
+ol.steps li::before{content:counter(st);grid-row:span 2;width:30px;height:30px;border:3px solid var(--ink);border-radius:50%;background:var(--coral);display:grid;place-items:center;font-size:14px;box-sizing:border-box}
+ol.steps b{font-weight:400;font-size:16px}
+ol.steps span{color:var(--ink-soft)}
+.entries{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media (max-width:760px){.entries{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:460px){.entries{grid-template-columns:1fr!important}}
+footer{margin-top:48px;display:grid;justify-items:center;gap:8px;color:var(--ink-soft);font-size:13.5px;text-align:center}
+footer svg{width:150px;height:30px}
+@media (prefers-reduced-motion:reduce){details.fold>summary .chev{transition:none}}
+</style>
+
+</head>
+<body>
+<header class="topbar gut" id="topbar">
+  <div class="inner">
+    <a class="brand" href="#home">
+      <svg viewBox="0 0 38 38" aria-hidden="true"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"><circle cx="19" cy="19" r="16" fill="#B9DAA5"/><path d="M19 30V18" fill="none" stroke-linecap="round"/><path d="M19 21c-6 0-9-4-9-8 5 0 9 3 9 8z" fill="#FFFCF6"/><path d="M19 18c0-5 4-9 9-9 0 5-4 9-9 9z" fill="#FFFCF6"/></g></svg>
+      <span><b>性別平等教育宣導資源</b><small>高雄市莒光國小 輔導室</small></span>
+    </a>
+    <button class="menubtn" id="menubtn" type="button" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/></svg>選單
+    </button>
+    <ul class="menu" id="menu">
+      <li><a href="#home">首頁</a></li>
+      <li><a href="#about">關於性平</a></li>
+      <li><a href="#curriculum">課程架構</a></li>
+      <li><a href="#themes">議題內涵</a></li>
+      <li><a href="#materials">參考教材</a></li>
+      <li><a href="#resources">宣導資源</a></li>
+      <li><a href="#sites">教案網站</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="gut"><div class="inner">
+
+  <!-- 首頁 -->
+  <section class="view" data-view="home" aria-label="首頁">
+    <div class="card cover">
+      <div class="text">
+        <h1>性別平等教育<br>宣導資源</h1>
+        <p>本網站彙整本校性別平等教育課程架構、議題實質內涵，以及各單位發布之宣導素材與教案資源。外部資源均連結至原發布單位網站。</p>
+        <a class="btn more" href="#about">關於性別平等教育 →</a>
+      </div>
+      <div class="art" aria-hidden="true"><svg viewBox="0 0 420 300" preserveAspectRatio="xMidYMax slice">
+        <g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+          <!-- 太陽 -->
+          <g class="sun">
+            <circle cx="330" cy="62" r="24" fill="#F6D27A"/>
+            <path d="M330 26v-10M330 108v-10M294 62h-10M376 62h-10M305 37l-7-7M362 94l-7-7M355 37l7-7M298 94l7-7" fill="none"/>
+          </g>
+          <!-- 雲 -->
+          <path d="M60 78c0-12 10-20 21-18 4-10 14-15 24-12 8 3 12 9 13 15 10-1 17 6 17 15H60z" fill="#FFFCF6"/>
+          <path d="M210 50c0-9 8-15 16-13 3-7 11-11 18-9 6 2 9 7 10 11 7 0 12 5 12 11h-56z" fill="#FFFCF6"/>
+          <!-- 遠山與草地 -->
+          <path d="M-5 210C60 170 120 175 180 196S300 168 425 190V305H-5z" fill="#B9DAA5"/>
+          <path d="M-5 250C80 228 170 236 250 246S360 232 425 240V305H-5z" fill="#E8F2E1"/>
+          <!-- 校舍 -->
+          <rect x="36" y="140" width="104" height="72" rx="6" fill="#FFFCF6"/>
+          <path d="M28 144L88 104L148 144z" fill="#F2A497"/>
+          <rect x="74" y="176" width="28" height="36" rx="6" fill="#A8D3E6"/>
+          <rect x="48" y="156" width="18" height="16" rx="3" fill="#F6D27A"/>
+          <rect x="110" y="156" width="18" height="16" rx="3" fill="#F6D27A"/>
+          <circle cx="88" cy="128" r="7" fill="#FFFCF6"/>
+          <path d="M88 104V82" fill="none"/><path d="M88 82l16 6-16 6z" fill="#F6D27A"/>
+          <!-- 樹 -->
+          <path d="M386 214v-34" fill="none"/>
+          <circle cx="386" cy="160" r="26" fill="#B9DAA5"/>
+          <path d="M376 158c4 3 8 3 12 0M392 168c3 2 6 2 8 0" fill="none"/>
+          <!-- 三個牽手的孩子 -->
+          <path d="M206 222h22M252 222h22" fill="none"/>
+          <!-- 孩子一 -->
+          <rect x="176" y="208" width="36" height="44" rx="14" fill="#F2A497"/>
+          <path d="M184 252v18M204 252v18" fill="none"/>
+          <circle cx="194" cy="190" r="18" fill="#FBE6D4"/>
+          <path d="M176 188c0-14 9-22 18-22s18 8 18 22c-6-6-12-9-18-9s-12 3-18 9z" fill="#3E3A39"/>
+          <path d="M210 182c6 2 10 8 9 16" fill="none"/>
+          <!-- 孩子二 -->
+          <rect x="222" y="202" width="38" height="50" rx="14" fill="#A8D3E6"/>
+          <path d="M232 252v18M250 252v18" fill="none"/>
+          <circle cx="241" cy="182" r="19" fill="#FBE6D4"/>
+          <path d="M222 180c0-12 8-21 19-21s19 9 19 21c-7-4-12-9-14-13-5 7-14 12-24 13z" fill="#3E3A39"/>
+          <!-- 孩子三 -->
+          <rect x="270" y="210" width="34" height="42" rx="14" fill="#F6D27A"/>
+          <path d="M279 252v18M296 252v18" fill="none"/>
+          <circle cx="287" cy="192" r="17" fill="#FBE6D4"/>
+          <path d="M270 194c-2-16 6-26 17-26s19 10 17 26l-4-1c0-7-6-12-13-12s-13 5-13 12z" fill="#3E3A39"/>
+          <!-- 花 -->
+          <path d="M140 262v-14M340 258v-14M40 270v-12" fill="none"/>
+        </g>
+        <!-- 臉部細節（細線） -->
+        <g fill="#3E3A39">
+          <circle cx="188" cy="192" r="2.2"/><circle cx="200" cy="192" r="2.2"/>
+          <circle cx="235" cy="185" r="2.2"/><circle cx="247" cy="185" r="2.2"/>
+          <circle cx="281" cy="195" r="2.2"/><circle cx="293" cy="195" r="2.2"/>
+        </g>
+        <g fill="none" stroke="#3E3A39" stroke-width="2" stroke-linecap="round">
+          <path d="M190 199q4 3 8 0M237 192q4 3 8 0M283 202q4 3 8 0"/>
+        </g>
+        <g fill="#F2A497" opacity=".9">
+          <circle cx="184" cy="198" r="3"/><circle cx="204" cy="198" r="3"/>
+          <circle cx="231" cy="191" r="3"/><circle cx="251" cy="191" r="3"/>
+          <circle cx="278" cy="201" r="3"/><circle cx="296" cy="201" r="3"/>
+        </g>
+        <g stroke="#3E3A39" stroke-width="3">
+          <circle cx="140" cy="246" r="6" fill="#F2A497"/><circle cx="340" cy="242" r="6" fill="#F6D27A"/><circle cx="40" cy="256" r="6" fill="#A8D3E6"/>
+        </g>
+      </svg></div>
+    </div>
+    <div class="entries" id="entries"></div>
+    <section class="card help" aria-labelledby="h-help">
+      <svg class="phone" viewBox="0 0 120 120" aria-hidden="true">
+      <g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <circle cx="60" cy="60" r="54" fill="#FFFCF6"/>
+        <path d="M30 70c0-20 13-36 30-36s30 16 30 36z" fill="#F2A497"/>
+        <rect x="26" y="70" width="68" height="20" rx="8" fill="#F2A497"/>
+        <circle cx="60" cy="62" r="11" fill="#FFFCF6"/>
+        <path d="M36 34c8-10 40-10 48 0" fill="none"/>
+        <rect x="28" y="30" width="18" height="10" rx="5" fill="#F6D27A"/>
+        <rect x="74" y="30" width="18" height="10" rx="5" fill="#F6D27A"/>
+        <path d="M92 20q6 4 4 12M98 14q10 8 6 22" fill="none"/>
+      </g>
+    </svg>
+      <div class="body">
+        <h2 id="h-help">求助與諮詢專線</h2>
+        <div class="lines">
+          <div class="line"><span class="num">113</span><span>保護專線（兒少保護、性侵害、性騷擾）</span><small>24 小時，手機、市話皆免付費</small></div>
+          <div class="line"><span class="num">02-6605-7373</span><span>衛生福利部性影像處理中心</span><small>每日 09:00–22:00，線上申訴 24 小時受理</small></div>
+        </div>
+        <p class="note">疑似校園性別事件請通知本校學務處或輔導室，遇緊急危險情況請撥打 110。</p>
+        <a class="btn more" href="https://affairs.kh.edu.tw/714" target="_blank" rel="noopener">本校學務處性別平等教育專區 ↗</a>
+      </div>
+    </section>
+  </section>
+
+
+  <!-- 關於性平 -->
+  <section class="view" data-view="about" aria-labelledby="h-about" hidden>
+    <div class="pagehead">
+      <h1 id="h-about">關於性別平等教育</h1>
+      <p>性別平等教育的定義、法源、發展沿革及校園性別事件通報流程。</p>
+    </div>
+    <div class="card aboutcard">
+      <div class="abouttext">
+        <h2>什麼是性別平等教育</h2>
+        <blockquote>以教育方式教導尊重多元性別差異，消除性別歧視，促進性別地位之實質平等。</blockquote>
+        <p class="cite">《性別平等教育法》第 3 條第 1 款</p>
+        <h2>立法目的</h2>
+        <blockquote>為促進性別地位之實質平等，消除性別歧視，維護人格尊嚴，厚植並建立性別平等之教育資源與環境，特制定本法。</blockquote>
+        <p class="cite">《性別平等教育法》第 1 條</p>
+      </div>
+      <div class="aboutart" aria-hidden="true">
+        <svg viewBox="0 0 220 180">
+          <g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M0 150c50-14 170-14 220 0v30H0z" fill="#B9DAA5"/>
+            <path d="M96 150l14-34 14 34z" fill="#F6D27A"/>
+            <rect x="22" y="108" width="176" height="10" rx="5" fill="#F2A497"/>
+            <circle cx="110" cy="113" r="5" fill="#FFFCF6"/>
+            <rect x="32" y="72" width="30" height="36" rx="12" fill="#A8D3E6"/>
+            <circle cx="47" cy="56" r="15" fill="#FBE6D4"/>
+            <path d="M32 54c0-11 7-18 15-18s15 7 15 18c-5-5-10-7-15-7s-10 2-15 7z" fill="#3E3A39"/>
+            <rect x="158" y="72" width="30" height="36" rx="12" fill="#F6D27A"/>
+            <circle cx="173" cy="56" r="15" fill="#FBE6D4"/>
+            <path d="M158 58c-2-14 5-22 15-22s17 8 15 22l-4-1c0-6-5-10-11-10s-11 4-11 10z" fill="#3E3A39"/>
+            <path d="M62 84l14-6M158 84l-14-6" fill="none"/>
+          </g>
+          <g fill="#3E3A39"><circle cx="42" cy="58" r="2"/><circle cx="52" cy="58" r="2"/><circle cx="168" cy="59" r="2"/><circle cx="178" cy="59" r="2"/></g>
+          <g fill="none" stroke="#3E3A39" stroke-width="2" stroke-linecap="round"><path d="M43 64q4 3 8 0M169 65q4 3 8 0"/></g>
+          <g stroke="#3E3A39" stroke-width="2.5" fill="#F2A497"><path d="M110 30c-6-4-9-8-9-11 0-2.5 2-4.5 4.5-4.5 2 0 3.6 1 4.5 2.6.9-1.6 2.5-2.6 4.5-2.6 2.5 0 4.5 2 4.5 4.5 0 3-3 7-9 11z"/></g>
+        </svg>
+      </div>
+    </div>
+    <h2 class="subh">法源與發展沿革</h2>
+    <ol class="timeline">
+      <li><b>1979 年</b><span>聯合國大會通過《消除對婦女一切形式歧視公約》（CEDAW）。</span></li>
+      <li><b>2000 年</b><span>屏東縣高樹國中學生葉永鋕事件，促使社會重視校園中的性別友善環境。</span></li>
+      <li><b>2004 年</b><span>《性別平等教育法》於民國 93 年 6 月 23 日公布施行。</span></li>
+      <li><b>2012 年</b><span>《消除對婦女一切形式歧視公約施行法》自 1 月 1 日起施行。</span></li>
+      <li><b>2019 年</b><span>十二年國民基本教育課程綱要實施，性別平等教育列為融入各領域之重要議題。</span></li>
+      <li><b>2023 年</b><span>《性別平等教育法》於民國 112 年 8 月 16 日修正公布全文。</span></li>
+    </ol>
+    <div class="folds">
+      <details class="fold" style="--fc:var(--yamabuki);--ft:var(--yamabuki-tint)">
+        <summary><span class="dot"></span><span class="tt"><b>性別平等教育日</b><small>每年 4 月 20 日</small></span><span class="chev" aria-hidden="true">▾</span></summary>
+        <div class="foldbody"><p>教育部訂定每年 4 月 20 日為性別平等教育日，115 年推動主題為「認識及尊重多元性別」。</p></div>
+      </details>
+      <details class="fold" style="--fc:var(--coral);--ft:var(--coral-tint)">
+        <summary><span class="dot"></span><span class="tt"><b>校園性別事件通報流程</b><small>依《性別平等教育法》及《校園性別事件防治準則》</small></span><span class="chev" aria-hidden="true">▾</span></summary>
+        <div class="foldbody">
+          <ol class="steps">
+            <li><b>知悉</b><span>學生、家長或教職員工發現疑似校園性別事件，可通知學務處或輔導室。</span></li>
+            <li><b>立即通報學校權責人員</b><span>校長、教師、職員或工友知悉時，應立即通報學務處。</span></li>
+            <li><b>24 小時內完成通報</b><span>學務處至遲於 24 小時內完成校安通報，並向社政主管機關通報（關懷 e 起來）。</span></li>
+            <li><b>輔導與協助</b><span>輔導室啟動輔導機制，提供當事人必要之協助。</span></li>
+            <li><b>收件與受理</b><span>學務處收件後 3 日內交付性別平等教育委員會；學校於 20 日內以書面通知是否受理。不受理者，得於接獲通知次日起 20 日內申復。</span></li>
+            <li><b>調查處理</b><span>性別平等教育委員會於受理後 2 個月內完成調查，必要時得延長 2 次，每次不逾 1 個月。</span></li>
+            <li><b>結果通知與申復</b><span>對處理結果不服者，得於收到書面通知次日起 30 日內申復，以 1 次為限。</span></li>
+          </ol>
+          <p class="cite" style="text-align:left">詳細規定請見<a href="https://affairs.kh.edu.tw/714" target="_blank" rel="noopener">學務處性別平等教育專區</a>及<a href="https://class.kh.edu.tw/1137/fpage/view/1" target="_blank" rel="noopener">高雄市性別平等教育委員會網站</a>。</p>
+        </div>
+      </details>
+      <details class="fold" style="--fc:var(--mizu);--ft:var(--mizu-tint)">
+        <summary><span class="dot"></span><span class="tt"><b>本校推動方式</b><small>課程、議題融入與宣導</small></span><span class="chev" aria-hidden="true">▾</span></summary>
+        <div class="foldbody">
+          <ul class="plain">
+            <li>依「百莒百全」課程架構，於各年級上、下學期規劃性別平等教育教學主題。（<a href="#curriculum">課程架構</a>）</li>
+            <li>對照十二年國教議題實質內涵，將性別平等教育融入各領域教學。（<a href="#themes">議題內涵</a>）</li>
+            <li>疑似校園性別事件可通知學務處或輔導室，通報及後續處理由學務處辦理，相關規定請見<a href="https://affairs.kh.edu.tw/714" target="_blank" rel="noopener">學務處性別平等教育專區</a>；輔導室負責輔導協助及宣導事項。</li>
+            <li>彙整中央與地方發布之宣導素材及教案資源，供教師備課使用。（<a href="#resources">宣導資源</a>、<a href="#sites">教案網站</a>）</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 課程架構 -->
+  <section class="view" data-view="curriculum" aria-labelledby="h-cur" hidden>
+    <div class="pagehead">
+      <h1 id="h-cur">百莒百全　課程架構</h1>
+      <p>本校依年段規劃之性別平等教育教學主軸，每學年分上、下學期兩個主題。請選擇年級。</p>
+    </div>
+    <div class="grades" role="tablist" aria-label="選擇年級" id="grades"></div>
+    <div class="card gpanel" role="tabpanel" id="gpanel" aria-live="polite"></div>
+    <div class="gnote">
+      <span>對應之議題實質內涵（性E）為參照教育部議題概念架構整理，供備課參考。</span>
+      <a class="btn" href="https://reurl.cc/WA6dl9" target="_blank" rel="noopener">教案參考資源 ↗</a>
+    </div>
+  </section>
+
+  <!-- 議題內涵 -->
+  <section class="view" data-view="themes" aria-labelledby="h-th" hidden>
+    <div class="pagehead">
+      <h1 id="h-th">國小階段議題實質內涵</h1>
+      <p>十二年國民基本教育課程綱要中，性別平等教育議題分為九個學習主題，國小階段共 13 項實質內涵。點選主題可展開內容。</p>
+    </div>
+    <div class="folds" id="themeFolds"></div>
+  </section>
+
+
+  <!-- 參考教材 -->
+  <section class="view" data-view="materials" aria-labelledby="h-mat" hidden>
+    <div class="pagehead">
+      <h1 id="h-mat">參考教材</h1>
+      <p>供教師撰寫教案及課堂教學參考，依年段整理教案、學習單、簡報與影片。點選年段展開。</p>
+    </div>
+    <div class="folds" id="matFolds"></div>
+  </section>
+
+  <!-- 宣導資源 -->
+  <section class="view" data-view="resources" aria-labelledby="h-res" hidden>
+    <div class="pagehead">
+      <h1 id="h-res">宣導資源</h1>
+      <p>依六大類別整理之宣導素材、教學資源及法規。點選類別展開，或輸入關鍵字查詢。</p>
+    </div>
+    <div class="search"><input type="search" id="q" placeholder="搜尋標題、說明或來源單位" aria-label="搜尋宣導資源"></div>
+    <span class="count" id="count"></span>
+    <div class="folds" id="resFolds"></div>
+  </section>
+
+  <!-- 教案網站 -->
+  <section class="view" data-view="sites" aria-labelledby="h-sites" hidden>
+    <div class="pagehead">
+      <h1 id="h-sites">教案資源網站</h1>
+      <p>中央、各縣市及學校發布之國小性別平等教育教案與教學資源。點選分組展開。</p>
+    </div>
+    <div class="folds" id="siteFolds"></div>
+  </section>
+
+  <footer>
+    <svg viewBox="0 0 150 30" aria-hidden="true"><g stroke="#3E3A39" stroke-width="3"><circle cx="24" cy="15" r="8" fill="#F2A497"/><circle cx="58" cy="15" r="8" fill="#F6D27A"/><circle cx="92" cy="15" r="8" fill="#A8D3E6"/><circle cx="126" cy="15" r="8" fill="#B9DAA5"/></g></svg>
+    <p>高雄市莒光國小輔導室 彙整　｜　資料更新：115 年 11 月 6 日</p>
+  </footer>
+</div></main>
+
+<script>
+
+/* ---------- 資料 ---------- */
+const E={
+  "性E1":"認識生理性別、性傾向、性別特質與性別認同的多元面貌。",
+  "性E2":"覺知身體意象對身心的影響。",
+  "性E3":"覺察性別角色的刻板印象，了解家庭、學校與職業的分工，不應受性別的限制。",
+  "性E4":"認識身體界限與尊重他人的身體自主權。",
+  "性E5":"認識性騷擾、性侵害、性霸凌的概念及其求助管道。",
+  "性E6":"了解圖像、語言與文字的性別意涵，使用性別平等的語言與文字進行溝通。",
+  "性E7":"解讀各種媒體所傳遞的性別刻板印象。",
+  "性E8":"了解不同性別者的成就與貢獻。",
+  "性E9":"檢視校園中空間與資源分配的性別落差，並提出改善建議。",
+  "性E10":"辨識性別刻板的情感表達與人際互動。",
+  "性E11":"培養性別間合宜表達情感的能力。",
+  "性E12":"了解與尊重家庭型態的多樣性。",
+  "性E13":"了解不同社會中的性別文化差異。"
+};
+const ESHORT={"性E1":"多元性別面貌","性E2":"身體意象","性E3":"性別角色刻板印象","性E4":"身體界限與自主","性E5":"性騷擾性侵害性霸凌防治","性E6":"性別平等語言","性E7":"媒體性別識讀","性E8":"不同性別者的貢獻","性E9":"校園空間與資源","性E10":"情感表達與人際互動","性E11":"合宜表達情感","性E12":"多元家庭型態","性E13":"性別文化差異"};
+const THEMES=[
+  {name:"生理性別、性傾向、性別特質與性別認同多樣性的尊重",codes:["性E1","性E2"],c:"var(--coral)"},
+  {name:"性別角色的突破與性別歧視的消除",codes:["性E3"],c:"var(--yamabuki)"},
+  {name:"身體自主權的尊重與維護",codes:["性E4"],c:"var(--mizu)"},
+  {name:"性騷擾、性侵害與性霸凌的防治",codes:["性E5"],c:"var(--wakatake)"},
+  {name:"語言、文字與符號的性別意涵分析",codes:["性E6"],c:"var(--coral)"},
+  {name:"科技、資訊與媒體的性別識讀",codes:["性E7"],c:"var(--yamabuki)"},
+  {name:"性別權益與公共參與",codes:["性E8","性E9"],c:"var(--mizu)"},
+  {name:"性別權力關係與互動",codes:["性E10","性E11"],c:"var(--wakatake)"},
+  {name:"性別與多元文化",codes:["性E12","性E13"],c:"var(--coral)"}
+];
+const GRADES=[
+  {g:1,label:"一年級",axis:"認識性別與尊重",
+   up:{t:"認識性別與個人特質",d:"認識生理性別、性別氣質與多元興趣。",e:["性E1"]},
+   down:{t:"學會尊重自己與他人",d:"認識身體界線，學習愛護自己。",e:["性E4"]}},
+  {g:2,label:"二年級",axis:"性別氣質與平等",
+   up:{t:"性別氣質沒有限制",d:"了解興趣、遊戲、職業等不分性別，打破性別刻板印象。",e:["性E3"]},
+   down:{t:"認識身體界線與安全",d:"學習保護自己，拒絕不適當的碰觸。",e:["性E4","性E5"]}},
+  {g:3,label:"三年級",axis:"家庭與社會中的性別角色",
+   up:{t:"家庭中的性別角色",d:"認識家務勞動分工、職業選擇與性別平等。",e:["性E3"]},
+   down:{t:"友誼與尊重",d:"學習與不同性別的同學建立健康關係。",e:["性E10","性E11"]}},
+  {g:4,label:"四年級",axis:"尊重自己與他人",
+   up:{t:"尊重身體與情感界線",d:"學習尊重自己的身體與他人界線。",e:["性E4","性E11"]},
+   down:{t:"情緒變化與身體調適",d:"初步認識青春期變化，理解身體變化對情緒的影響，並學習調適方法。",e:["性E2"]}},
+  {g:5,label:"五年級",axis:"我的身體我做主",
+   up:{t:"青春期的變化與自我認同",d:"學習青春期的生理變化，理解心理與社交層面的適應。",e:["性E1","性E2"]},
+   down:{t:"網路安全與身體自主",d:"認識網路性別議題、性騷擾與性侵害類型及求助管道，拒絕不當接觸。",e:["性E5","性E7"]}},
+  {g:6,label:"六年級",axis:"多元性別與社會",
+   up:{t:"認識多元性別與性別刻板印象",d:"認識多元家庭、性別友善環境與資訊媒體的性別識讀。",e:["性E1","性E7","性E12"]},
+   down:{t:"性別平等與反霸凌",d:"辨識與應對校園內的性別不平等，學習適切表達自己的情感。",e:["性E5","性E9","性E11"]}}
+];
+const CATS=[
+  {id:"c01",no:"01",name:"法規宣導與班會微課程",cc:"var(--wakatake)"},
+  {id:"c02",no:"02",name:"數位網路性別暴力防治",cc:"var(--mizu)"},
+  {id:"c03",no:"03",name:"性侵害與性騷擾防治",cc:"var(--coral)"},
+  {id:"c04",no:"04",name:"多元性別與情感教育",cc:"var(--yamabuki)"},
+  {id:"c05",no:"05",name:"親師溝通與家長宣導",cc:"var(--coral)"},
+  {id:"c06",no:"06",name:"行政法規與處理流程",cc:"var(--mizu)"}
+];
+const ITEMS=[{"title": "高雄市性別平等教育委員會網站", "url": "https://class.kh.edu.tw/1137/fpage/view/1", "category": "c06", "type": "官方網站", "grade": "全年段", "audience": ["行政", "教師", "家長"], "source": "高雄市性別平等教育委員會", "note": "本市性別平等教育委員會網站，提供本市性別平等教育相關資訊。", "pinned": false}, {"title": "性別平等教育法（112.08.16 修正）", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0080067", "category": "c06", "type": "法規", "grade": "全年段", "audience": ["行政", "教師", "家長"], "source": "全國法規資料庫", "note": "性別平等教育之主要法源，規範學習環境與資源、課程教材與教學，以及校園性別事件之通報、調查與處理。", "pinned": false}, {"title": "教育部性別平等教育全球資訊網", "url": "https://www.gender.edu.tw/", "category": "c01", "type": "官方網站", "grade": "全年段", "audience": ["教師", "行政"], "source": "教育部", "note": "教育部性別平等教育主題網站，內容包含課程教學資源、影片、法規、校園性別事件防治問答及相關表單。", "pinned": false}, {"title": "性別平等教育日專區、課程教學教材與研究專區", "url": "https://www.gender.edu.tw/web/index.php/m1/m1_05_select", "category": "c01", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "教育部", "note": "彙整歷年性別平等教育日活動資料及國教署研發之教學宣導素材，可作為課程或班會活動設計參考。", "pinned": true}, {"title": "CIRN：全面性教育暨數位性別暴力防治主題簡報與學習單", "url": "https://cirn.k12ea.gov.tw/web1129/dl_page.aspx?fid=16353", "category": "c01", "type": "簡報", "grade": "全年段", "audience": ["教師", "學生"], "source": "國教署中央輔導團性平分團", "note": "國教署國民教育中央輔導團性別平等教育議題分團設計之課程簡報及學習單（114 年 4 月函轉）。", "pinned": false}, {"title": "衛福部性影像處理中心", "url": "https://siarc.mohw.gov.tw/", "category": "c02", "type": "官方網站", "grade": "高年級", "audience": ["教師", "家長", "行政"], "source": "衛生福利部", "note": "衛生福利部設置之性影像案件單一窗口，受理移除下架申訴及諮詢。諮詢熱線 02-6605-7373（每日 09:00–22:00），線上申訴 24 小時受理。", "pinned": false}, {"title": "兒少性私密影像遭散佈常見樣態（宣導資料）", "url": "https://siarc.mohw.gov.tw/service.php", "category": "c02", "type": "海報／文宣", "grade": "高年級", "audience": ["教師", "學生"], "source": "衛生福利部性影像處理中心", "note": "衛生福利部性影像處理中心之宣導資料，說明兒少私密影像遭散布之常見情形；國教署 114 年 9 月函請學校於集會或課程中運用。", "pinned": true}, {"title": "教育部中小學網路素養與認知網站", "url": "https://eliteracy.edu.tw/", "category": "c02", "type": "影片", "grade": "高年級", "audience": ["教師", "學生"], "source": "教育部", "note": "教育部資訊素養與倫理推廣網站，提供數位性別暴力防治相關之宣導漫畫、影片及教案。", "pinned": false}, {"title": "學齡前兒童性侵害防治教育影片（小黑啤系列）", "url": "https://dep.mohw.gov.tw/DOPS/cp-1311-71974-105.html", "category": "c03", "type": "影片", "grade": "低年級", "audience": ["教師", "學生", "家長"], "source": "衛生福利部保護服務司", "note": "衛福部影音專區，共 4 個動畫單元：小黑啤的身體紅綠燈、猴子蹦蹦交朋友、春春的秘密、我是身體的主人（歌曲）。內容涵蓋身體界線、尊重他人身體自主權，以及遇到不當碰觸時拒絕、離開與求助。原為學齡前兒童製作。", "pinned": false}, {"title": "多元性別友善教學資源手冊（國小版）及課程模組", "url": "https://pse.is/7perdf", "category": "c04", "type": "手冊", "grade": "全年段", "audience": ["教師"], "source": "教育部", "note": "內容包括概念篇、課程與教學篇、校園經驗篇、導師篇及多元性別教學資源篇。115 年性別平等教育日主題為「認識及尊重多元性別」。", "pinned": true}, {"title": "CARE 性影像外流應對準則（影片）", "url": "https://dep.mohw.gov.tw/dops/cp-1311-79335-105.html", "category": "c05", "type": "影片", "grade": "全年段", "audience": ["家長", "教師"], "source": "衛生福利部保護服務司", "note": "衛福部影音專區，共 5 支影片：完整版，以及觀念、報案、蒐證、申訴四篇，說明性影像外流時的處理方式。", "pinned": false}, {"title": "性影像被害人求助指引", "url": "https://www.mohw.gov.tw/dl-85886-56188049-e33d-46f2-9b25-ca19adb85096.html", "category": "c05", "type": "手冊", "grade": "全年段", "audience": ["家長", "行政"], "source": "衛生福利部", "note": "衛生福利部編製，說明性影像被害人於社政、警察、檢察、法院及學校等環節可取得之協助。", "pinned": false}, {"title": "校園性別事件防治準則（113.03.06 修正）", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=h0080069", "category": "c06", "type": "法規", "grade": "全年段", "audience": ["行政", "教師"], "source": "全國法規資料庫", "note": "規範校園安全規劃、申請調查及調查處理程序等事項，為學校訂定校園性別事件防治規定之依據。", "pinned": false}, {"title": "教育部校安通報網", "url": "https://csrc.edu.tw/", "category": "c06", "type": "表單／流程", "grade": "全年段", "audience": ["行政"], "source": "教育部校安中心", "note": "教育部校園安全暨災害防救通報處理中心網站；數位／網路性別暴力已列入通報類別。", "pinned": false}, {"title": "我的身體我做主：身體保護教育片單", "url": "https://www.ptskids.tw/article/bodilyintegrity-66972df316c20", "category": "c03", "type": "影片", "grade": "全年段", "audience": ["教師", "家長"], "source": "公視兒少資源網", "note": "彙整身體保護相關影音資源，包括適用學齡前及低年級的《小黑啤》系列，以及以青少年為對象的網路交友與數位性暴力影片，並附學習單與教案連結。", "pinned": false}, {"title": "莒光國小學務處性別平等教育專區", "url": "https://affairs.kh.edu.tw/714", "category": "c06", "type": "官方網站", "grade": "全年段", "audience": ["教師", "家長", "行政"], "source": "本校學務處", "note": "本校學務處建置之性別平等教育專區，校園性別事件之通報與處理由學務處辦理。", "pinned": true}, {"title": "教育部家庭教育資源網", "url": "https://familyedu.moe.gov.tw/docList.aspx?uid=8856&pid=1033", "category": "c05", "type": "官方網站", "grade": "全年段", "audience": ["家長"], "source": "教育部", "note": "教育部建置之家庭教育資源網站，提供親職教育相關資料。", "pinned": false}, {"title": "未成年懷孕求助網站", "url": "https://257085.sfaa.gov.tw/", "category": "c05", "type": "官方網站", "grade": "高年級", "audience": ["家長", "教師"], "source": "衛生福利部社會及家庭署", "note": "提供未成年懷孕之諮詢及求助資訊。", "pinned": false}, {"title": "PILOT 正向人際及生活能力訓練課程電子書", "url": "https://reurl.cc/kyYbzb", "category": "c05", "type": "手冊", "grade": "全年段", "audience": ["家長", "教師"], "source": "國立臺灣大學兒少暨家庭研究中心", "note": "正向人際互動及生活能力訓練課程之電子書。", "pinned": false}, {"title": "關於青少年自拍性私密影像：家長該知道的事《理解及展開對話》", "url": "https://www.youtube.com/watch?v=8zBkcxJrfek", "category": "c05", "type": "影片", "grade": "高年級", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家長為對象，說明如何理解青少年自拍性私密影像議題並與孩子展開對話。", "pinned": false}, {"title": "關於青少年自拍性私密影像：家長該知道的事《協助及支持》", "url": "https://www.youtube.com/watch?v=lSZR_4iIhas", "category": "c05", "type": "影片", "grade": "高年級", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家長為對象，說明孩子遇到相關情況時的協助與支持方式。", "pinned": false}, {"title": "性平理念推廣影片：家務分工篇（推廣育兒津貼及家事分工）", "url": "https://www.youtube.com/watch?v=PmYocM4rA-Q", "category": "c05", "type": "影片", "grade": "全年段", "audience": ["家長"], "source": "YouTube（發布單位未標示）", "note": "以家務分工為主題之性別平等理念推廣影片。", "pinned": false}, {"title": "教育部社會情緒學習中長程計畫（114–118 年）", "url": "https://cfte.site.nthu.edu.tw/var/file/275/1275/img/127742991.pdf", "category": "c04", "type": "手冊", "grade": "全年段", "audience": ["教師", "行政"], "source": "教育部", "note": "說明社會情緒學習（SEL）五大核心能力：自我覺察、自我管理、社會覺察、人際關係技巧、負責任的決定，以及學校推動方向。", "pinned": false}, {"title": "康軒 SEL 教學資源網", "url": "https://sel.knsh.com.tw/", "category": "c04", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "康軒文教事業（國立臺灣師範大學社會情緒教育與發展研究中心產學合作指導）", "note": "提供國小低、中、高年級 SEL 主題教案、學習單（如情緒卡提問表）、影片及線上閱讀故事。", "pinned": false}, {"title": "翰林 SEL 幸福共好計畫", "url": "https://sel.hle.com.tw/", "category": "c04", "type": "教案／學習單", "grade": "全年段", "audience": ["教師"], "source": "翰林出版事業", "note": "提供 SEL 主題教案、情緒故事短片、情緒表情圖卡及課堂暖身引導等資源。", "pinned": false}, {"title": "國小六年級性別平等教育教案（人際關係與情緒處理）", "url": "https://market.cloud.edu.tw/resources/web/1638008", "category": "c04", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "教育部教育大市集（基隆市八堵國小）", "note": "以在人際關係中妥善處理情緒、性別互動相處態度為教學重點之教學簡案；採創用 CC 姓名標示－非商業性－禁止改作授權。", "pinned": false}, {"title": "表達自己的情緒不受性別刻板影響（教案）", "url": "https://drive.google.com/file/d/17YNXscSocDe_Qa_HwxIC__EX6ErXmo57/view", "category": "c04", "type": "教案／學習單", "grade": "高年級", "audience": ["教師"], "source": "關埔國小性別平等教育專區", "note": "以情緒表達與性別刻板印象為主題之教案。", "pinned": false}];
+const SITES=[
+  {group:"中央",gc:"var(--coral)",gt:"var(--coral-tint)",items:[
+    {name:"性別平等教育全球資訊網－國小資源",org:"教育部",url:"https://www.gender.edu.tw/web/index.php/m5/m5_05_02_index/1?k=&a=&c=",note:"國小階段性別平等教育教學資源。"},
+    {name:"CIRN 性別平等教育議題分團專區",org:"教育部國民及學前教育署",url:"https://cirn.k12ea.gov.tw/web1129/",note:"國教輔導團性別平等教育議題分團之教學方案與教材。"},
+    {name:"國教署性別平等教育資源中心",org:"教育部國民及學前教育署",url:"https://friendlycampus.k12ea.gov.tw/Gender",note:"國教署建置之性別平等教育資源網站。"}]},
+  {group:"各縣市",gc:"var(--yamabuki)",gt:"var(--yamabuki-tint)",items:[
+    {name:"高雄市性別平等教育委員會網站",org:"高雄市性別平等教育委員會",url:"https://class.kh.edu.tw/1137/fpage/view/1",note:"本市性別平等教育委員會網站，提供本市性別平等教育相關資訊。"},
+    {name:"高雄市教育局性別平等相關資源",org:"高雄市政府教育局",url:"https://class.kh.edu.tw/1137/upload/upload_list/10",note:"本市性別平等教育相關文件與資源。"},
+    {name:"臺北市性別平等教育網－國小成果分享",org:"臺北市政府教育局",url:"https://www.gender.tp.edu.tw/cht/index.php?code=list&ids=71&page=1",note:"臺北市國小性別平等教育成果。"},
+    {name:"新北市輔導團－國小性平教育文件資訊",org:"新北市國教輔導團",url:"https://ceag.ntpc.edu.tw/p/412-1007-620.php?Lang=zh-tw",note:"國小性別平等教育相關文件。"},
+    {name:"臺中市性別平等教育成果暨教學教材",org:"臺中市政府教育局",url:"https://www.tc.edu.tw/page/fe37ab3c-5024-45d5-9bee-2f08bd1d9a33?term=&year=&keyword=&page=1",note:"性別平等教育成果及教學教材。"},
+    {name:"臺南市輔導團－性別平等教育資源",org:"臺南市國教輔導團",url:"https://ceag.tn.edu.tw/modules/ceag/resource.php?TeamID=17&g2p=1",note:"性別平等教育議題教學資源。"}]},
+  {group:"學校與民間",gc:"var(--mizu)",gt:"var(--mizu-tint)",items:[
+    {name:"關埔國小各年段參考教材",org:"新竹市關埔國小",url:"https://sites.google.com/gpps.hc.edu.tw/consulting/%E5%90%84%E5%B9%B4%E6%AE%B5%E5%8F%83%E8%80%83%E6%95%99%E6%9D%90?authuser=0",note:"依低、中、高年段整理之參考教材。"},
+    {name:"真善美教學資源分享網",org:"真善美教學資源分享網",url:"https://goodlife-edu.org/",note:"提供主題教案、套裝課程等教學資源。"}]}
+];
+
+
+const D="https://drive.google.com/file/d/",F="https://drive.google.com/drive/folders/";
+const MATERIALS=[
+ {id:"low",name:"低年級（一、二年級）",c:"var(--wakatake)",groups:[
+  {h:"關埔國小自編教材",items:[
+   ["一年級自編教材",D+"1cqwLBaEx4DHsV8SANTgXIaDZ-nzuCLxI/view","教材"],["一年級參考教案",D+"1a5PsdxgCo4gEyf4MS0XBLJ4GO8c1SfrI/view","教案"],
+   ["二年級自編教材",D+"1J2hagcHeeF-Zywfi4m86uMuCJobpFwHj/view","教材"],["二年級參考教案",D+"1lgrYU2-wt2Jx8yZ7qeAj1f4lh4T1yfs7/view","教案"]]},
+  {h:"420 性別平等教育日教材包（低年級）",items:[
+   ["114 學年度",F+"1g7kToncpkA1zS5ESeCDBruT7hVA84oKP","教材包"],["113 學年度",F+"1e58z_63muK8jGAOcsXj84ur786c90ZMq","教材包"],
+   ["112 學年度",F+"1WGfqWaFk-SJE7RJcGdTyJcgoB4Ic5ld4","教材包"],["111 學年度",F+"1I5DcWq3dI-pJctRdRmzLygtC64g2ZlJh","教材包"]]},
+  {h:"主題教案",items:[
+   ["認識身體自主權－簡報",D+"1Ovz6NHIzAe7IXU86zFviEs4HzHjRLvAP/view","簡報"],["認識身體自主權－怪叔叔",D+"1-1jzPtAnbWp7hHfCrmSbx5YxuEMbo0lv/view","教案"],
+   ["認識性別角色－紅公雞",D+"1wEcY8m6dQv_qLki4wiplcOuxgxOCsH_0/view","教案"],["性別特質與多元面貌－我是奧利佛",F+"1fThHZ8cWnzo-GQGdgFBVeR5-PF1bKHpD","教案"],
+   ["性別認同與性別互動－我的小雞雞",D+"1GaGH2rNb33wL4h0z3Z6sSb1yZ80f8sfB/view","教案"],["認識刻板的性別角色－真正的男子漢",D+"1P22eLxjM6_aT3CaMNdwfWfZzjmX6e5Hr/view","教案"],
+   ["性別角色與刻板印象－芭比與超人玩國",D+"1NkLShfTmexwZ-iJfIglSb_8SR_QY5x7W/view","教案"],["2024 低年級熟人性侵、性剝削教案",F+"1qgxT5FpclLRHWhjkdV7-RBLMEO-RJ8yC","教案"]]},
+  {h:"數位／網路性別暴力防治（G1–G3）",items:[
+   ["學習單",D+"1naEBGKvK8pGI2YyUYZgTR8Gz9nLRV1PA/view","學習單"],["教學指引",D+"1K-WofnBBLpAVZ3WFsKv40QhAQtusK6LT/view","教學指引"],
+   ["教學簡報","https://docs.google.com/presentation/d/1Cwr0pNuIzvy7YF8b2yHO_bt9-0pBcYpn/edit","簡報"],["2023 漫畫海報、教師手冊、教學簡報",F+"1IqrHqREETJ_a3nVYgL0eE3Tad-G80WDA","資料夾"]]}]},
+ {id:"mid",name:"中年級（三、四年級）",c:"var(--mizu)",groups:[
+  {h:"420 性別平等教育日教材包（中年級）",items:[
+   ["114 學年度",F+"1EV6TA4NeEzoTmHldgjg4rvhNi7tRe_TR","教材包"],["113 學年度",F+"1ewP476YxfU10hUyZgW9qOQLXicnU5UQ7","教材包"],
+   ["112 學年度",F+"1GuPVc2rbzKXYa9RHpqV1SY3l8vyZ-dyn","教材包"],["111 學年度",F+"1VwjD2kOENw5ZI0OX4cmObXbZ3G_v0ZNs","教材包"]]},
+  {h:"三年級教案",items:[
+   ["不要摸我的臉","https://docs.google.com/document/d/1Dgzf1YjmshCFVeBFsLyEUhtcTddDDoFE/edit","教案"],["性別暴力防治－不要就是不要",D+"174u3hsrQcN5TTbociOjFveyTYDdmoCWU/view","教案"],
+   ["性別角色刻板－威廉的洋娃娃",D+"1MnybzHFSLM41pIpHXgsN9TD4T_ypQTDn/view","教案"],["科技與性別媒體識讀－紅鞋公主與七矮人",D+"1SAFdqij6tUPCTgtqsVJCZ8k1B2ze4EV4/view","教案"],
+   ["頑皮公主不出嫁",D+"1yZDhTNtaUjvd7a6o49_y2YZGFaxOw73f/view","教案"],["身體自主權－身體界線",D+"1cl0lR4s9TLT4USXpYTUybJ_rV7Td8hNd/view","教案"],
+   ["性別認同的多元面貌－認識同志家庭",F+"1YD_bnJEASIGyS06PmUJtIqJzfSI4jOOo","教案"]]},
+  {h:"四年級教案",items:[
+   ["破除性別框架－從廣告看性別",D+"1jY-DJDPVka1VIhfVCbh91idsQSfBtNQz/view","教案"],["破除性別框架－後勁國小女足隊",D+"1MlJd6uL8p4KMpL4hUE6qv2eqBOizMVx8/view","教案"],
+   ["破除性別框架－深夜的奇葩戀愛圖鑑",D+"1e_cPArtg6DsfogoYyyV5puwzcaIw2P8D/view","教案"],["認識性別刻板－仙杜瑞拉",D+"1nyKwwEg3NV-Mnbj2gyTUNahmxV00rOsd/view","教案"],
+   ["認識性別分工",D+"1MNehJQn4p01brtV2cdG3x1qosUUbcHjw/view","教案"],["職業分工－廣告看性別刻板",D+"1i3xIeVYYaflUUMa76g5E_LMmTDidfhlB/view","教案"],
+   ["職業分工－朱家故事",D+"1Sd5vJZCYLpe2DwRHxn_2qo0rUBcVCaEn/view","教案"]]},
+  {h:"其他",items:[
+   ["2024 中高年級熟人性侵、性剝削教案",F+"15JJRjbYSSUV5N0pWvDuXGPgKBG0D3FpD","教案"],["性別平等作品徵件及推廣活動－讓交織的性別故事現身",D+"1CznHCYFy-jECL7hz6J34EcZ71-JitKFj/view","教案"],
+   ["數位／網路性別暴力防治（G1–G3，三年級適用）",F+"1IqrHqREETJ_a3nVYgL0eE3Tad-G80WDA","資料夾"],["數位／網路性別暴力防治（G4–G6，四年級適用）",F+"1PcDIbxhNrNHpKkL3XPspJNd9drPmqlM8","資料夾"]]}]},
+ {id:"high",name:"高年級（五、六年級）",c:"var(--yamabuki)",groups:[
+  {h:"420 性別平等教育日教材包（高年級）",items:[
+   ["115 年度",F+"1zl0CDeGoIiCAWX0kHOXEbwFtFui0kBEa","教材包"],["114 年度",F+"1HdaGz1bTn0TLp5IrIW61SkCSOCLQHA1S","教材包"],
+   ["113 年度",F+"1RZ1aiKZfELHyGaEm9GCtAxzPozVaZbzE","教材包"],["112 年度",F+"1DC7dzFjMIuvRlETPuDCTmgKsPyd61uJ-","教材包"]]},
+  {h:"五年級教案",items:[
+   ["性別偏見－你能，我也能",D+"1nbUe8H1aL-cHpqwDEoYqCO-egyLKhb4j/view","教案"],["性別迷思與分工",D+"1n6K3mS9WPiN59gb2_Hx2BkB7wrKgvY84/view","教案"],
+   ["我該做什麼？",D+"1N6RFPh4ityle1ht5PDotfxXWEwbg5-2P/view","教案"],["性不性，由你",D+"1K4o6lh7JZtHwpF86NJEqU4fTibHtza6F/view","教案"],
+   ["表達自己的情緒不受性別刻板影響",D+"17YNXscSocDe_Qa_HwxIC__EX6ErXmo57/view","教案"],
+   ["游泳課與性別互動：尊重、理解與自信（關埔國小自製）","https://www.canva.com/design/DAGeSo4qcuc/bI2evcnzUVFXKcoB6ov1nA/view","簡報"]]},
+  {h:"六年級教案",items:[
+   ["寶貝的寶貝－身體的主人與自我接納",D+"1N99SuWy3vHSUUgR7ALiezzxB9cGqKSUu/view","教案"],["你我的身體－身體的變化",D+"1Xm4WTj4lfjpu9z7F83eAnDnvqDXa_W0d/view","教案"],
+   ["性侵害性騷擾 1",D+"1rGF8Lt3vPXMu60mzgDUx3_L4cq7h2qwS/view","教案"],["性侵害性騷擾 2",D+"1LnErW6P4-5Cil_rGCGLDmLVarCXWjRYX/view","教案"],
+   ["身體自主權－性侵害性騷擾 3",D+"1dvgPTS-gGKz8FPKraYgR_SQ7yuiWSm0t/view","教案"],["從家庭暴力看性別平等",D+"1pi30Xcl4yy7ref4XosXGNKrbKrz8XRfZ/view","教案"],
+   ["公開求婚",D+"1X6th0qLziG1qfnpUP6q3YFUQuuzarez6/view","教案"],["依莉的娃娃－思考未婚生子",D+"1FVc1d_1WUKjSuXKEbaTn5wENY8_Xq_73/view","教案"],
+   ["性別認同的多元面貌－部落巡禮 Follow 米",F+"1LuswmNjXWNHZKs9MRCgHJtNdm28f947_","教案"]]},
+  {h:"月經教育",items:[
+   ["從「經」開始、健康喜悅（經期保健影片）","https://youtu.be/D6st6JviYZQ","影片"],["生理期好自在",D+"1RlAL1OzjwjDa4QhyjfLKq9nm0Eipk3Ff/view","教案"]]},
+  {h:"其他",items:[
+   ["2024 中高年級熟人性侵、性剝削教案",F+"15JJRjbYSSUV5N0pWvDuXGPgKBG0D3FpD","教案"],
+   ["數位／網路性別暴力防治－學習單（G4–G6）",D+"1_BEdg-C6C9hs1zVv-BIVYJ_838OrdY5g/view","學習單"],["數位／網路性別暴力防治－教學指引（G4–G6）",D+"1HQzURnZAAv7F3ffmQ52s10GNEDOPKqhd/view","教學指引"],
+   ["數位／網路性別暴力防治－教學簡報（G4–G6）","https://docs.google.com/presentation/d/1-Q9_m8-dPUHPfgwn22BRbWoYmtG6zvYx/edit","簡報"],["2023 宣導海報、教師手冊、教學簡報（G4–G6）",F+"1PcDIbxhNrNHpKkL3XPspJNd9drPmqlM8","資料夾"]]}]},
+ {id:"all",name:"跨年級教材",c:"var(--coral)",groups:[
+  {h:"從 1 到 12：跨學習階段的性別平等教育教材",items:[
+   ["課程架構","https://drive.google.com/open?id=1MZ8AnscbWHEpfG-SFa7azykWg_vl9gIL","文件"],["教材手冊","https://drive.google.com/open?id=1RgeRvU2M5oRkszXKy8ALWksQDa56x_OD","手冊"],
+   ["動畫列表","https://drive.google.com/open?id=1A8eEmUbvzox1I2nRp2Si8d13EZbE5QvO","影片"],
+   ["校園觀察家",F+"1Zc-6G6WIlQSf10i-V15lleD_gC7pJH0m","單元"],["生活小神探",F+"10_F-LySidhIZF1s6sMGfD1y1eVm18m8L","單元"],["主夫？主婦？比一比",F+"1lFGiK8lYEQIDrzBVuVLeGmudWjQJ7QJH","單元"],
+   ["書包顏色有秘密",F+"1eZr2s1eHqt7S_JOscRQleU4AgIphRqa2","單元"],["不一樣的乳液",F+"1tB7yjoxLf_gtOSloR1Yt6-8fxsrirv0T","單元"],["一窺廣告的後台",F+"1h5WXe8EPn3ob29NJtzrLstfJ8lEDJ4Jz","單元"],
+   ["我的神隊友",F+"1UgwZVlGH3NNiDaTTYIqVMab86GxSa0Q_","單元"],["尋找台灣的女科學家",F+"1qLdOG1jIv5waohUR5HTitWKhYw4AsRK5","單元"],["女光永續",F+"1eiFHKCU2oGMW367oGWqmX1_1G1K39Zzg","單元"],
+   ["不一樣的「家」",F+"1hj38uO0Mr-h-de8XKw0wiNDlfpFkBK3O","單元"],["實線虛線家庭線",F+"1xRDaZjbcy-1_KLuMIY3u1Y7LCyLmO_mO","單元"],["團圓飯的「畫」與「話」",F+"1_l3nCtXQi_5mW6bNvX2e7d7HtD7rVb4X","單元"]]},
+  {h:"手冊與繪本",items:[
+   ["2025 多元性別友善教學資源手冊－國中小版（含課程模組）",F+"1G1U_4-IrwBPnif44rh1wbWl8nYvS0pzJ","手冊"],["身體我最大－兒童性侵害防治手冊",D+"1K_JVbSu_U5-F1TXL71RdF1HfWuIVzAZV/view","手冊"],
+   ["STOP 機器人－性騷擾防治繪本",D+"1LJ3gXmrEN_Zec1FavhHneIuwtQu64YC6/view","繪本"],["性別意識成長手冊",D+"10yX-Pa0Z39PauXPSrgpC4KDH3ngKYo57/view","手冊"],
+   ["兒童反歧視案例彙編",D+"18fqTHOESDcKnmglDkXoyCfotOSPcKmTv/view","手冊"],["性平書單參考",F+"1m9trfrRArc3D6FfJ80GSYRgb58L0_kos","書單"]]},
+  {h:"宣導影片",items:[
+   ["做自己不分性別（桃園市性平輔導團）","https://www.youtube.com/watch?v=yL3P3RSW4xA","影片"],["小葉教給我們的重要事（桃園市性平輔導團）","https://www.youtube.com/watch?v=VP7F527eoC8","影片"],
+   ["泡泡王的秘密：有人觸摸我的身體或侵犯我的時候怎麼辦？（桃園市性平輔導團）","https://www.youtube.com/watch?v=B5aPyPpjrf8","影片"],["大鯨魚瑪莉蓮（繪本影片）","https://www.youtube.com/watch?v=KVFR556RS-8","影片"]]}]}
+];
+
+/* ---------- 小圖示 ---------- */
+const INK='stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"';
+const ICONS={
+  c01:`<svg viewBox="0 0 40 40"><g ${INK}><rect x="5" y="7" width="30" height="20" rx="3" fill="#FFFCF6"/><path d="M10 14h12M10 20h18M12 27l-3 7M28 27l3 7" fill="none"/></g></svg>`,
+  c02:`<svg viewBox="0 0 40 40"><g ${INK}><rect x="11" y="4" width="18" height="32" rx="4" fill="#FFFCF6"/><path d="M17 31h6" fill="none"/><path d="M20 24c-5-3-7-6-7-8.5 0-2 1.6-3.5 3.5-3.5 1.5 0 2.8.8 3.5 2 .7-1.2 2-2 3.5-2 1.9 0 3.5 1.5 3.5 3.5 0 2.5-2 5.5-7 8.5z" fill="#F2A497"/></g></svg>`,
+  c03:`<svg viewBox="0 0 40 40"><g ${INK}><path d="M4 20c0-9 7-15 16-15s16 6 16 15c-3-2-5-2-8 0-3-2-5-2-8 0-3-2-5-2-8 0-3-2-5-2-8 0z" fill="#FFFCF6"/><path d="M20 20v12c0 3-5 3-5 0" fill="none"/></g></svg>`,
+  c04:`<svg viewBox="0 0 40 40"><g ${INK} fill="none"><path d="M5 30a15 15 0 0 1 30 0" stroke-width="3"/><path d="M10 30a10 10 0 0 1 20 0"/><path d="M15 30a5 5 0 0 1 10 0"/><path d="M3 30h8M29 30h8"/></g></svg>`,
+  c05:`<svg viewBox="0 0 40 40"><g ${INK}><path d="M5 19L20 7l15 12" fill="none"/><path d="M9 16v18h22V16" fill="#FFFCF6"/><path d="M20 30c-4-2.5-6-5-6-7 0-1.7 1.3-3 3-3 1.2 0 2.3.7 3 1.7.7-1 1.8-1.7 3-1.7 1.7 0 3 1.3 3 3 0 2-2 4.5-6 7z" fill="#F6D27A"/></g></svg>`,
+  c06:`<svg viewBox="0 0 40 40"><g ${INK}><rect x="8" y="6" width="24" height="30" rx="3" fill="#FFFCF6"/><rect x="14" y="3" width="12" height="6" rx="2" fill="#B9DAA5"/><path d="M13 17l3 3 5-6M13 27l3 3 5-6M24 18h4M24 28h4" fill="none"/></g></svg>`,
+  sprout:`<svg viewBox="0 0 40 40"><g ${INK}><path d="M20 34V18" fill="none"/><path d="M20 22c-8 0-12-5-12-10 7 0 12 4 12 10z" fill="#FFFCF6"/><path d="M20 18c0-7 5-12 12-12 0 7-5 12-12 12z" fill="#FFFCF6"/><path d="M10 34h20" fill="none"/></g></svg>`,
+  book:`<svg viewBox="0 0 40 40"><g ${INK}><path d="M5 10c5-2 10-2 15 1v22c-5-3-10-3-15-1z" fill="#FFFCF6"/><path d="M35 10c-5-2-10-2-15 1v22c5-3 10-3 15-1z" fill="#FFFCF6"/></g></svg>`,
+  folder:`<svg viewBox="0 0 40 40"><g ${INK}><path d="M5 12h12l3 4h15v18H5z" fill="#FFFCF6"/><path d="M5 18h30" fill="none"/></g></svg>`,
+  search:`<svg viewBox="0 0 40 40"><g ${INK}><rect x="8" y="5" width="22" height="30" rx="3" fill="#FFFCF6"/><path d="M13 13h12M13 19h12M13 25h7" fill="none"/><path d="M27 26l6 6" fill="none"/><circle cx="25" cy="24" r="5" fill="#F6D27A"/></g></svg>`,
+  pencil:`<svg viewBox="0 0 40 40"><g ${INK}><path d="M9 31l3-9L26 8l6 6-14 14z" fill="#FFFCF6"/><path d="M23 11l6 6M9 31l9-3" fill="none"/></g></svg>`,
+  pin:`<svg viewBox="0 0 40 40"><g ${INK}><circle cx="20" cy="16" r="9" fill="#FFFCF6"/><path d="M20 25v10" fill="none"/></g></svg>`
+};
+function plant(g){
+  const stem=12+g*7, top=64-stem; let leaves="";
+  for(let i=0;i<g;i++){const y=60-((i+1)*stem/(g+1)); const s=i%2?1:-1;
+    leaves+=`<path d="M28 ${y}c${s*10} 0 ${s*14}-5 ${s*14}-10c${-s*9} 0 ${-s*14} 4 ${-s*14} 10z" fill="#B9DAA5"/>`;}
+  const head=g===6?`<circle cx="22" cy="${top}" r="5" fill="#F2A497"/><circle cx="34" cy="${top}" r="5" fill="#F2A497"/><circle cx="28" cy="${top-6}" r="5" fill="#F2A497"/><circle cx="28" cy="${top+5}" r="5" fill="#F2A497"/><circle cx="28" cy="${top}" r="4" fill="#F6D27A"/>`:`<circle cx="28" cy="${top}" r="3.5" fill="#B9DAA5"/>`;
+  return `<svg viewBox="0 0 56 90" aria-hidden="true"><g stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M28 64V${top}" fill="none"/>${leaves}${head}<path d="M14 64h28l-4 18H18z" fill="#F2A497"/></g></svg>`;
+}
+
+/* ---------- 工具 ---------- */
+const $=id=>document.getElementById(id);
+function el(tag,attrs={},...kids){const n=document.createElement(tag);for(const[k,v]of Object.entries(attrs)){if(v==null||v===false)continue;if(k==="class")n.className=v;else if(k==="style")n.style.cssText=v;else if(k==="html")n.innerHTML=v;else if(k.startsWith("on"))n.addEventListener(k.slice(2),v);else n.setAttribute(k,v===true?"":v)}for(const k of kids.flat()){if(k==null)continue;n.append(k.nodeType?k:document.createTextNode(String(k)))}return n}
+const TINT={"var(--coral)":"var(--coral-tint)","var(--yamabuki)":"var(--yamabuki-tint)","var(--mizu)":"var(--mizu-tint)","var(--wakatake)":"var(--wakatake-tint)"};
+function fold({icon,color,title,sub,body,open=false}){
+  return el("details",{class:"fold",style:`--fc:${color};--ft:${TINT[color]}`,open},
+    el("summary",{},icon?el("span",{class:"ic",html:icon}):el("span",{class:"dot"}),
+      el("span",{class:"tt"},el("b",{},title),sub?el("small",{},sub):null),el("span",{class:"chev","aria-hidden":"true"},"▾")),
+    el("div",{class:"foldbody"},body));
+}
+const catById=Object.fromEntries(CATS.map(c=>[c.id,c]));
+
+/* ---------- 路由與選單 ---------- */
+const VIEWS=["home","about","curriculum","themes","materials","resources","sites"];
+function show(){
+  const v=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"home";
+  document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);
+  document.querySelectorAll(".menu a").forEach(a=>{if(a.getAttribute("href")==="#"+v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  $("topbar").classList.remove("open");$("menubtn").setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+  if(v==="materials"&&openBand){const d=document.getElementById("band-"+openBand);if(d){d.open=true;setTimeout(()=>d.scrollIntoView({block:"start"}),0)}openBand=null}
+}
+window.addEventListener("hashchange",show);
+$("menubtn").onclick=()=>{const o=$("topbar").classList.toggle("open");$("menubtn").setAttribute("aria-expanded",String(o))};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("topbar").classList.contains("open")){$("topbar").classList.remove("open");$("menubtn").setAttribute("aria-expanded","false");$("menubtn").focus()}});
+
+/* ---------- 首頁入口 ---------- */
+$("entries").replaceChildren(...[
+  {h:"about",t:"關於性平",s:"定義、法源與通報流程",ic:"pin",c:"coral"},
+  {h:"curriculum",t:"課程架構",s:"一至六年級教學主軸",ic:"sprout",c:"wakatake"},
+  {h:"themes",t:"議題內涵",s:"國小階段 性E1–E13",ic:"book",c:"wakatake"},
+  {h:"materials",t:"參考教材",s:"依年段整理之教案",ic:"pencil",c:"yamabuki"},
+  {h:"resources",t:"宣導資源",s:`六大類別，共 ${ITEMS.length} 筆`,ic:"folder",c:"mizu"},
+  {h:"sites",t:"教案網站",s:"中央、各縣市與學校",ic:"search",c:"coral"}
+].map(x=>el("a",{class:"entry",href:"#"+x.h,style:`--ec:var(--${x.c});--et:var(--${x.c}-tint)`},
+  el("span",{class:"ic",html:ICONS[x.ic]}),el("b",{},x.t),el("span",{},x.s))));
+
+/* ---------- 課程架構 ---------- */
+let curG=1;
+const BAND=[{name:"關埔國小低年級參考教材",url:"https://sites.google.com/gpps.hc.edu.tw/consulting/%E5%90%84%E5%B9%B4%E6%AE%B5%E5%8F%83%E8%80%83%E6%95%99%E6%9D%90/%E4%BD%8E%E5%B9%B4%E7%B4%9A%E5%8F%83%E8%80%83%E6%95%99%E6%9D%90"},{name:"關埔國小中年級參考教材",url:"https://sites.google.com/gpps.hc.edu.tw/consulting/%E5%90%84%E5%B9%B4%E6%AE%B5%E5%8F%83%E8%80%83%E6%95%99%E6%9D%90/%E4%B8%AD%E5%B9%B4%E7%B4%9A%E5%8F%83%E8%80%83%E6%95%99%E6%9D%90"},{name:"關埔國小高年級參考教材",url:"https://sites.google.com/gpps.hc.edu.tw/consulting/%E5%90%84%E5%B9%B4%E6%AE%B5%E5%8F%83%E8%80%83%E6%95%99%E6%9D%90/%E9%AB%98%E5%B9%B4%E7%B4%9A%E5%8F%83%E8%80%83%E6%95%99%E6%9D%90"}];
+const eChip=c=>el("span",{class:"chip",title:E[c]},`${c} ${ESHORT[c]}`);
+function renderGrades(){
+  $("grades").replaceChildren(...GRADES.map(g=>el("button",{class:"gtab",role:"tab",type:"button",id:`tab-${g.g}`,"aria-selected":String(curG===g.g),"aria-controls":"gpanel",tabindex:curG===g.g?"0":"-1",
+    onclick:()=>{curG=g.g;renderGrades();renderPanel()},
+    onkeydown:e=>{if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();curG=((curG-1+(e.key==="ArrowRight"?1:5))%6)+1;renderGrades();renderPanel();$(`tab-${curG}`).focus()}}},
+    el("span",{html:plant(g.g)}),el("span",{},g.label))));
+}
+const term=(cls,lbl,o)=>el("div",{class:`term ${cls}`},el("span",{class:"sem"},lbl),el("h3",{},o.t),el("p",{},o.d),el("div",{class:"chips"},o.e.map(eChip)));
+function renderPanel(){
+  const g=GRADES[curG-1];const p=$("gpanel");p.setAttribute("aria-labelledby",`tab-${g.g}`);
+  p.replaceChildren(el("div",{class:"axis"},el("span",{class:"lbl"},`${g.label}　教學主軸`),el("h2",{},g.axis)),
+    el("div",{class:"terms"},term("up","上學期",g.up),term("down","下學期",g.down)),
+    el("p",{class:"ext"},"延伸參考：",el("a",{href:"#materials",onclick:()=>{openBand=["low","mid","high"][Math.ceil(g.g/2)-1]}},`參考教材－${["低","中","高"][Math.ceil(g.g/2)-1]}年級`," →")));
+}
+
+/* ---------- 議題內涵 ---------- */
+$("themeFolds").replaceChildren(...THEMES.map(t=>fold({color:t.c,title:t.name,sub:t.codes.join("、"),
+  body:el("ul",{class:"elist"},t.codes.map(c=>el("li",{},el("b",{},c),el("span",{},E[c]))))})));
+
+/* ---------- 宣導資源 ---------- */
+function resItem(i){
+  return el("div",{class:"res"},
+    el("div",{class:"chips"},i.pinned?el("span",{class:"chip pin"},"本學期重點"):null,el("span",{class:"chip"},i.type),...i.audience.map(a=>el("span",{class:"chip"},a)),el("span",{class:"chip"},i.grade)),
+    el("h3",{},el("a",{href:i.url,target:"_blank",rel:"noopener"},i.title," ↗")),
+    el("p",{},i.note),el("span",{class:"src"},`來源：${i.source}`));
+}
+function renderRes(){
+  const q=$("q").value.trim().toLowerCase();
+  const match=i=>!q||[i.title,i.note,i.source,i.type,catById[i.category].name].join(" ").toLowerCase().includes(q);
+  let total=0;const folds=[];
+  for(const c of CATS){
+    const rows=ITEMS.filter(i=>i.category===c.id&&match(i)).sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
+    total+=rows.length;
+    if(q&&!rows.length)continue;
+    folds.push(fold({icon:ICONS[c.id],color:c.cc,title:`${c.no}　${c.name}`,sub:`${rows.length} 筆`,open:!!q,
+      body:rows.length?rows.map(resItem):el("p",{class:"count"},"目前尚無資源。")}));
+  }
+  $("resFolds").replaceChildren(...(folds.length?folds:[el("div",{class:"empty"},"查無符合條件的資源，請調整關鍵字。")]));
+  $("count").textContent=q?`找到 ${total} 筆`:"";
+  $("count").hidden=!q;
+}
+$("q").addEventListener("input",renderRes);
+
+/* ---------- 教案網站 ---------- */
+$("siteFolds").replaceChildren(...SITES.map(g=>fold({color:g.gc,title:g.group,sub:`${g.items.length} 個網站`,
+  body:g.items.map(s=>el("div",{class:"res"},el("h3",{},el("a",{href:s.url,target:"_blank",rel:"noopener"},s.name," ↗")),el("p",{},s.note),el("span",{class:"src"},s.org)))})));
+
+
+/* ---------- 參考教材 ---------- */
+let openBand=null;
+function renderMat(){
+  $("matFolds").replaceChildren(...MATERIALS.map(b=>{
+    const n=b.groups.reduce((a,g)=>a+g.items.length,0);
+    const f=fold({color:b.c,title:b.name,sub:`${n} 項`,body:b.groups.map(g=>el("div",{class:"mgroup"},el("h3",{},g.h),
+      el("ul",{class:"mlist"},g.items.map(([t,u,k])=>el("li",{},el("span",{class:"chip"},k),el("a",{href:u,target:"_blank",rel:"noopener"},t," ↗"))))))});
+    f.id="band-"+b.id;return f;}));
+}
+renderGrades();renderPanel();renderRes();renderMat();show();
+</script>
+
+</body>
+</html>
